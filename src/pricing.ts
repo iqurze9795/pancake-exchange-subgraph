@@ -138,9 +138,8 @@ export function getTrackedLiquidityUSD(
   token1: Token,
 ): BigDecimal {
   if (token0 && token1 && token0.derivedBNB && token1.derivedBNB) {
-    const bnbPrice = bundle.bnbPrice as BigDecimal
-    let price0 = token0.derivedBNB.times(bnbPrice) as BigDecimal
-    let price1 = token1.derivedBNB.times(bnbPrice) as BigDecimal
+    let price0 = token0.derivedBNB.times(bundle.bnbPrice)
+    let price1 = token1.derivedBNB.times(bundle.bnbPrice)
 
     // both are whitelist tokens, take average of both amounts
     if (WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {

@@ -272,10 +272,10 @@ export class Token extends Entity {
     this.set("totalLiquidity", Value.fromBigDecimal(value));
   }
 
-  get derivedBNB(): BigDecimal | null {
+  get derivedBNB(): BigDecimal {
     let value = this.get("derivedBNB");
     if (!value || value.kind == ValueKind.NULL) {
-      return null;
+      return new BigDecimal(new BigInt(0)); //can't return null so hot fix to return bigint zero
     } else {
       return value.toBigDecimal();
     }
